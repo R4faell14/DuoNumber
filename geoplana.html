@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Explicação Interativa das Matérias</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+<style>
+  body, html {
+    margin: 0; padding: 0;
+    font-family: 'Press Start 2P', cursive;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .container {
+    max-width: 420px;
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    padding: 20px;
+  }
+  h1 {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+    user-select: none;
+  }
+  .materias-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  button.materia-btn {
+    font-size: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid black;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    user-select: none;
+  }
+  button.materia-btn:hover {
+    background-color: #ddd;
+  }
+  .explicacao {
+    margin-top: 25px;
+    border: 2px dashed #aaa;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 10px;
+    color: #333;
+    background-color: #f3f3f3;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  }
+  .explicacao.active {
+    max-height: 400px; /* suficiente para o texto */
+    opacity: 1;
+    padding: 15px;
+  }
+  .close-btn {
+    display: block;
+    margin-top: 10px;
+    font-size: 8px;
+    padding: 6px 12px;
+    border: 2px solid black;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    user-select: none;
+    align-self: flex-end;
+    transition: background-color 0.25s ease;
+  }
+  .close-btn:hover {
+    background-color: #ddd;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Explique as matérias</h1>
+    <div class="materias-lista">
+      <button class="materia-btn" data-id="geom">Geometria Plana</button>
+      <button class="materia-btn" data-id="analise">Análise Gráfica</button>
+      <button class="materia-btn" data-id="algebra">Álgebra</button>
+      <button class="materia-btn" data-id="seq-serie">Álgebra Sequência e Séries</button>
+      <button class="materia-btn" data-id="probabilidade">Teoria Probabilidade</button>
+      <button class="materia-btn" data-id="combinatoria">Análise Combinatória</button>
+      <button class="materia-btn" data-id="aritmetica">Aritmética, Razão e Proporção</button>
+    </div>
+
+    <div id="explicacao" class="explicacao"></div>
+  </div>
+
+<script>
+  const explicacoes = {
+    geom: "Geometria Plana estuda as propriedades e relações de figuras planas como triângulos, quadrados e círculos.",
+    analise: "Análise Gráfica envolve interpretar gráficos para compreender funções e variações.",
+    algebra: "Álgebra trata da manipulação de expressões e equações para resolver problemas matemáticos.",
+    "seq-serie": "Álgebra Sequência e Séries aborda padrões e somas de termos sequenciais.",
+    probabilidade: "Teoria Probabilidade analisa a chance de ocorrência de eventos aleatórios.",
+    combinatoria: "Análise Combinatória estuda contagem, arranjos e combinações possíveis em conjuntos.",
+    aritmetica: "Aritmética, Razão e Proporção focam em operações básicas e relações proporcionais entre números."
+  };
+
+  const buttons = document.querySelectorAll('.materia-btn');
+  const explicacaoDiv = document.getElementById('explicacao');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id');
+      const texto = explicacoes[id];
+
+      if (explicacaoDiv.classList.contains('active') && explicacaoDiv.dataset.current === id) {
+        // Se já está aberta a mesma explicação, fecha
+        explicacaoDiv.classList.remove('active');
+        explicacaoDiv.dataset.current = "";
+        explicacaoDiv.innerHTML = "";
+      } else {
+        // Mostra a explicação nova
+        explicacaoDiv.innerHTML = `
+          <p>${texto}</p>
+          <button class="close-btn">Fechar</button>
+        `;
+        explicacaoDiv.classList.add('active');
+        explicacaoDiv.dataset.current = id;
+
+        // Evento do botão fechar
+        explicacaoDiv.querySelector('.close-btn').onclick = () => {
+          explicacaoDiv.classList.remove('active');
+          explicacaoDiv.dataset.current = "";
+          explicacaoDiv.innerHTML = "";
+        };
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trajetória de Estudos</title>
+  <link rel="stylesheet" href="css/pagina2.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="phone">
+    <div class="container2">
+
+      <!-- TOPO COM IMAGEM DE FUNDO -->
+
+<!-- TOPO COM IMAGEM DE FUNDO -->
+<div class="topo-com-imagem">
+  <div class="conteudo-topo">
+    <h2 class="titulo2">TRAJETORIA<br>ESTUDOS!</h2>
+    <!-- usei também a classe "botao" para herdar o estilo base e adicionei uma classe específica -->
+    <a href="homeexercicios.html" class="botao branco botao-exercicios">Exercícios</a>
+  </div>
+</div>
+
+<hr>
+      <!-- BOTÕES DE CONTEÚDO --> 
+      <div class="botoes">
+        <a href="#" class="botao branco">Geometria Plana</a>
+        <a href="#" class="botao cinza">Análise Gráfica</a>
+        <a href="#" class="botao roxo">Álgebra</a>
+        <a href="#" class="botao preto">Álgebra Sequência e Séries</a>
+        <a href="#" class="botao cinza2">Teoria Probabilidade</a>
+        <a href="#" class="botao cinzaescu">Analise Combinatoria</a>
+        <a href="#" class="botao cinza3">Aritmetica, Razao e Proporçao</a>
+      </div>
+
+      <!-- MENU INFERIOR -->
+      <div class="menu-inferior">
+        <a href="index.html" id="icones">  <img src="css/img/home.png" alt="Home" />  </a>
+        <a href="trilha.html" id="icones">  <img src="css/img/trilha.png" alt="trilha"/>  </a>
+        <a href="#" id="icones">  <img src="img/bau.png" alt="Baú" />  </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal explicação -->
+<div id="modalExplicacao" class="modal">
+  <div class="modal-content">
+    <span id="fecharModal" class="fechar">&times;</span>
+    <h3 id="tituloMateria"></h3>
+    <p id="textoExplicacao"></p>
+  </div>
+</div>
+
+
+<script>
+  // Mapeando explicações
+  const explicacoes = {
+  "Geometria Plana": 
+    `Geometria Plana é o estudo das formas e figuras que existem em um plano, como triângulos, quadrados e círculos. 
+    Nessa matéria, você vai aprender a calcular áreas, perímetros e ângulos dessas figuras.
+
+    **Fórmulas importantes:**
+    - Perímetro do quadrado: P = 4 × lado
+    - Área do quadrado: A = lado²
+    - Perímetro do retângulo: P = 2 × (largura + altura)
+    - Área do retângulo: A = largura × altura
+    - Área do triângulo: A = (base × altura) / 2
+    - Circunferência do círculo: C = 2 × π × raio
+    - Área do círculo: A = π × raio²
+
+    Para estudar, desenhe essas formas no papel e pratique calcular o perímetro e a área. Isso ajuda a visualizar e entender a geometria no dia a dia.`,
+
+  "Análise Gráfica": 
+    `Análise Gráfica é sobre entender e interpretar gráficos que mostram como as coisas mudam.
+    Você vai aprender a ler gráficos de linha, barras e funções matemáticas.
+
+    **Conceitos importantes:**
+    - Crescimento: quando o gráfico sobe
+    - Decrescimento: quando o gráfico desce
+    - Máximos e mínimos: pontos onde o gráfico muda de direção
+
+    Para estudar, identifique esses pontos e tente desenhar gráficos simples de funções, como y = 2x + 1 (uma linha reta).`,
+
+  "Álgebra": 
+    `Álgebra é uma forma de representar números e problemas usando letras e símbolos.
+    Você vai aprender a resolver equações.
+
+    **Fórmulas básicas:**
+    - Equação do 1º grau: ax + b = 0 → x = -b / a
+    - Equação do 2º grau: ax² + bx + c = 0 → fórmula de Bhaskara:
+      x = (-b ± √(b² - 4ac)) / (2a)
+
+    Para estudar, pratique resolver equações isolando o x.`,
+
+  "Álgebra Sequência e Séries": 
+    `Estudo de sequências (listas de números) e séries (soma dos termos).
+
+    **Fórmulas básicas:**
+    - Termo geral da PA (Progressão Aritmética): aₙ = a₁ + (n - 1)d
+    - Soma dos n primeiros termos da PA: Sₙ = (n/2)(a₁ + aₙ)
+    - Termo geral da PG (Progressão Geométrica): aₙ = a₁ × r^(n - 1)
+    - Soma dos n primeiros termos da PG: Sₙ = a₁ × (rⁿ - 1) / (r - 1), r ≠ 1
+
+    Pratique identificar e aplicar essas fórmulas para sequências simples.`,
+
+  "Teoria Probabilidade": 
+    `Estudo da chance de eventos acontecerem.
+
+    **Fórmulas básicas:**
+    - Probabilidade de um evento: P(E) = (número de casos favoráveis) / (número de casos possíveis)
+    - Probabilidade do evento contrário: P(¬E) = 1 - P(E)
+
+    Exemplos: chance de tirar um número 3 em um dado → 1/6`,
+
+  "Analise Combinatoria": 
+    `Contagem de combinações e permutações.
+
+    **Fórmulas básicas:**
+    - Permutação simples: Pₙ = n!
+    - Permutação com repetição: P = n! / (n₁! × n₂! × ... )
+    - Combinação: C(n, p) = n! / (p! × (n - p)!)
+
+    Estude esses conceitos para organizar e contar possibilidades.`,
+
+  "Aritmetica, Razao e Proporçao": 
+    `Operações básicas, razões e proporções.
+
+    **Fórmulas básicas:**
+    - Razão entre A e B: A : B
+    - Proporção: A / B = C / D
+    - Produto em cruz: A × D = B × C
+
+    Para estudar, pratique resolvendo problemas de proporção e regra de três.` 
+};
+
+
+
+  const botoes = document.querySelectorAll('.botoes .botao');
+  const modal = document.getElementById('modalExplicacao');
+  const fecharBtn = document.getElementById('fecharModal');
+  const tituloModal = document.getElementById('tituloMateria');
+  const textoModal = document.getElementById('textoExplicacao');
+
+  botoes.forEach(botao => {
+    botao.addEventListener('click', (e) => {
+      e.preventDefault(); // evitar comportamento padrão do link
+
+      const nomeMateria = botao.textContent.trim();
+      const explicacao = explicacoes[nomeMateria] || "Explicação não disponível.";
+
+      tituloModal.textContent = nomeMateria;
+      textoModal.textContent = explicacao;
+
+      modal.style.display = "block";
+    });
+  });
+
+  // Fechar o modal ao clicar no "X"
+  fecharBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  // Fechar o modal ao clicar fora do conteúdo
+  window.onclick = (event) => {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  function abrirPopup(materia) {
+  const popup = document.getElementById('popup');
+  popup.innerHTML = `
+    <div class="popup-conteudo">
+      <button class="fechar" onclick="fecharPopup()">×</button>
+      ${explicacoes[materia]}
+    </div>
+  `;
+  popup.style.display = 'flex'; // ou block, dependendo do seu estilo
+}
+
+function fecharPopup() {
+  document.getElementById('popup').style.display = 'none';
+}
+
+</script>
+
+</body>
+</html>
